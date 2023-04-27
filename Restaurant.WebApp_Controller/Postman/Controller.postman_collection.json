@@ -158,6 +158,177 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Verb/PostNewDrink",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Id",
+							"value": "4",
+							"type": "text"
+						},
+						{
+							"key": "Name",
+							"value": "Bouteille d'eau",
+							"type": "text"
+						},
+						{
+							"key": "Price",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:7236/Verb/PostNewDrink",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7236",
+					"path": [
+						"Verb",
+						"PostNewDrink"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verb/PutDrink",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Id",
+							"value": "4",
+							"type": "text"
+						},
+						{
+							"key": "Name",
+							"value": "L'Putto",
+							"type": "text"
+						},
+						{
+							"key": "Price",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:7236/Verb/PutDrink",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7236",
+					"path": [
+						"Verb",
+						"PutDrink"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verb/PatchDrinkItemPrice",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Id",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "Name",
+							"value": "Bouteille d'eau",
+							"type": "text"
+						},
+						{
+							"key": "Price",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:7236/Verb/PatchDrinkItemPrice?id=1&drinkPrice=99",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7236",
+					"path": [
+						"Verb",
+						"PatchDrinkItemPrice"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						},
+						{
+							"key": "drinkPrice",
+							"value": "99"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verb/DeleteDrink",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Id",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "Name",
+							"value": "Bouteille d'eau",
+							"type": "text"
+						},
+						{
+							"key": "Price",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:7236/Verb/DeleteDrink/4",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7236",
+					"path": [
+						"Verb",
+						"DeleteDrink",
+						"4"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

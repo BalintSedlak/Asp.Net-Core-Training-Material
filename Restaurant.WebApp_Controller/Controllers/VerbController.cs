@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Restaurant.WebApp_Controller.Models.ViewModels;
 
 namespace Restaurant.WebApp_Controller.Controllers;
+
+[ApiController]
+[Route("[controller]")]
 public class VerbController : Controller
 {
     /*HTTP defines a set of request methods to indicate the desired action to be performed for a given resource.
@@ -37,5 +41,55 @@ public class VerbController : Controller
     *There are specific headers in the response, like Cache-Control, that prevents caching.
     */
 
-    //[Namespace]/
+    
+    private static List<DrinkViewModel> _drinks = new() { new DrinkViewModel(0, "Margarita", 10), new DrinkViewModel(1, "Mojito", 12), new DrinkViewModel(2, "Martini", 7), new DrinkViewModel(3, "Whiskey", 11) };
+
+    [HttpGet("[action]")]
+    public IEnumerable<DrinkViewModel> GetAllDrink()
+    {
+        return _drinks;
+    }
+
+    [HttpPost("[action]")]
+    public IEnumerable<DrinkViewModel> PostNewDrink([FromForm] DrinkViewModel viewModel)
+    {
+        _drinks.Add(viewModel);
+
+        return _drinks;
+    }
+
+    //                  | PUT | PATCH |
+    //                  |     |       |
+    //Partial Updates   |  X  |   O   |
+    //                  |     |       |
+    //Creates a resource|  O  |   X   |
+    //                  |     |       |
+    //Idempotent        |  O  |   X   |
+    //                  |     |       |
+    //Safe              |  X  |   X   |
+    //                  |     |       |
+
+    [HttpPut("[action]")]
+    public IEnumerable<DrinkViewModel> PutDrink([FromForm] DrinkViewModel viewModel)
+    {
+        _drinks[viewModel.Id] = viewModel;
+
+        return _drinks;
+    }
+
+    [HttpPatch("[action]")]
+    public IEnumerable<DrinkViewModel> PatchDrinkItemPrice([FromQuery] int id, [FromQuery] int drinkPrice)
+    {
+        _drinks[id].Price = drinkPrice;
+
+        return _drinks;
+    }
+
+    [HttpDelete("[action]/{id}")]
+    public IEnumerable<DrinkViewModel> DeleteDrink(int id)
+    {
+        _drinks.RemoveAt(id);
+
+        return _drinks;
+    }
 }
