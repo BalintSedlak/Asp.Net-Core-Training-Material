@@ -1,0 +1,163 @@
+{
+	"info": {
+		"_postman_id": "e2a5b1d7-327c-49e3-b8e2-f070b02e4bdc",
+		"name": "Controller",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1842694",
+		"_collection_link": "https://lively-crescent-144617.postman.co/workspace/MinimalApiDemo~2da3e333-aa5a-4016-82e1-aa6b944d7c3a/collection/1842694-e2a5b1d7-327c-49e3-b8e2-f070b02e4bdc?action=share&creator=1842694&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Parameters/Order/Complex",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Foods[0]",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "Foods[1]",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "Foods[2]",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "Drinks[0]",
+							"value": "2",
+							"description": "\n",
+							"type": "text"
+						},
+						{
+							"key": "Drinks[1]",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "Drinks[2]",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "Desserts[0]",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "Desserts[1]",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "Desserts[2]",
+							"value": "7",
+							"type": "text"
+						},
+						{
+							"key": "Desserts[3]",
+							"value": "9",
+							"type": "text"
+						},
+						{
+							"key": "Desserts[4]",
+							"value": "0",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:7236/Parameters/Order/Complex",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7236",
+					"path": [
+						"Parameters",
+						"Order",
+						"Complex"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Parameters/Order/DrinkWithIce/{id}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "true",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7236/Parameters/Order/DrinkWithIce/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7236",
+					"path": [
+						"Parameters",
+						"Order",
+						"DrinkWithIce",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Parameters/Order/Food/Delivery/{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7236/Parameters/Order/Food/Delivery/2?ZipCode=1117&Street=Alizutca2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7236",
+					"path": [
+						"Parameters",
+						"Order",
+						"Food",
+						"Delivery",
+						"2"
+					],
+					"query": [
+						{
+							"key": "ZipCode",
+							"value": "1117"
+						},
+						{
+							"key": "Street",
+							"value": "Alizutca2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

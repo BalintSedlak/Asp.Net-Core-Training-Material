@@ -1,9 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Azure;
+using Microsoft.AspNetCore.Mvc;
+using Restaurant.WebApp_Controller.Models.DTOs;
+using Restaurant.WebApp_Controller.Models.ViewModels;
+using System.Collections.Generic;
 
 namespace Restaurant.WebApp_Controller.Controllers;
 
 [ApiController]
-[Route("Parameters")]
+[Route("[controller]")]
 public class ParametersController : Controller
 {
     private readonly List<string> _foods = new(){"Yakiniku", "Tortilla", "Croissant", "Tofu", "Noodles", "Tacos", "Ramen", "Burger", "Sushi", "Pizza"};
@@ -85,4 +89,48 @@ public class ParametersController : Controller
      * 
      * For complex types, Web API tries to read the value from the message body, using a media-type formatter.
      */
+
+    //Order with simple type from body
+    [HttpGet("Order/DrinkWithIce/{id}")]
+    public string GetFromBody(int id, [FromBody] bool isItWithIce)
+    {
+        string response = _drinks[id];
+
+        response += isItWithIce ? " with ice" : string.Empty;
+
+        return response;
+    }
+
+    //Order with complex type
+    [HttpGet("Order/Complex")]
+    public ComplexOrderDTO GetComplexOrder([FromForm] ComplexOrderViewModel viewModel)
+    {
+        ComplexOrderDTO complexOrderDTO = new();
+
+        foreach (var id in viewModel.Drinks)
+        {
+            complexOrderDTO.Orders.Add(_drinks[id]);
+        }
+
+        foreach (var id in viewModel.Foods)
+        {
+            complexOrderDTO.Orders.Add(_foods[id]);
+        }
+
+        foreach (var id in viewModel.Desserts)
+        {
+            complexOrderDTO.Orders.Add(_desserts[id]);
+        }
+
+        return complexOrderDTO;
+    }
+
+    //Order with complex type in uri (It's not FromUri!!!)
+    [HttpGet("Order/Food/Delivery/{id}/")]
+    public string GetFromBody(int id, [FromQuery] FoodDeliveryViewModel viewModel)
+    {
+        string response = $"{_foods[id]} deliverd to {viewModel.ZipCode}, {viewModel.Street}";
+
+        return response;
+    }
 }

@@ -36,4 +36,6 @@ public class VerbController : Controller
     *
     *There are specific headers in the response, like Cache-Control, that prevents caching.
     */
+
+    //[Namespace]/
 }
