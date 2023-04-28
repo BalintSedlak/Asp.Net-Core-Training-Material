@@ -3,7 +3,6 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Restaurant.WebApp_Controller.DAL;
 
@@ -12,11 +11,9 @@ using Restaurant.WebApp_Controller.DAL;
 namespace Restaurant.WebApp_Controller.Migrations
 {
     [DbContext(typeof(ControllerAppContext))]
-    [Migration("20230426135601_Migration0")]
-    partial class Migration0
+    partial class ControllerAppContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,13 +24,13 @@ namespace Restaurant.WebApp_Controller.Migrations
 
             modelBuilder.Entity("Restaurant.Infrasturcture.Entities.CategoryEntity", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("Id")
                         .HasColumnOrder(0);
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
@@ -48,7 +45,7 @@ namespace Restaurant.WebApp_Controller.Migrations
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
                 });
@@ -270,14 +267,6 @@ namespace Restaurant.WebApp_Controller.Migrations
 
             modelBuilder.Entity("Restaurant.Infrasturcture.Entities.EmployeeTerritoryEntity", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("Id")
-                        .HasColumnOrder(0);
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<int>("EmployeeID")
                         .HasColumnType("int")
                         .HasColumnOrder(1);
@@ -286,9 +275,12 @@ namespace Restaurant.WebApp_Controller.Migrations
                         .HasColumnType("int")
                         .HasColumnOrder(2);
 
-                    b.HasKey("Id");
+                    b.Property<int>("Id")
+                        .HasColumnType("int")
+                        .HasColumnName("Id")
+                        .HasColumnOrder(0);
 
-                    b.HasIndex("EmployeeID");
+                    b.HasKey("EmployeeID", "TerritoryID");
 
                     b.HasIndex("TerritoryID");
 
@@ -297,17 +289,6 @@ namespace Restaurant.WebApp_Controller.Migrations
 
             modelBuilder.Entity("Restaurant.Infrasturcture.Entities.OrderDetailEntity", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("Id")
-                        .HasColumnOrder(0);
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<float>("Discount")
-                        .HasColumnType("real");
-
                     b.Property<int>("OrderID")
                         .HasColumnType("int")
                         .HasColumnOrder(1);
@@ -316,15 +297,21 @@ namespace Restaurant.WebApp_Controller.Migrations
                         .HasColumnType("int")
                         .HasColumnOrder(2);
 
+                    b.Property<float>("Discount")
+                        .HasColumnType("real");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int")
+                        .HasColumnName("Id")
+                        .HasColumnOrder(0);
+
                     b.Property<short>("Quantity")
                         .HasColumnType("smallint");
 
                     b.Property<decimal>("UnitPrice")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderID");
+                    b.HasKey("OrderID", "ProductID");
 
                     b.HasIndex("ProductID");
 
@@ -347,6 +334,7 @@ namespace Restaurant.WebApp_Controller.Migrations
                         .HasColumnOrder(1);
 
                     b.Property<int?>("EmployeeID")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<decimal?>("Freight")
@@ -666,7 +654,9 @@ namespace Restaurant.WebApp_Controller.Migrations
 
                     b.HasOne("Restaurant.Infrasturcture.Entities.EmployeeEntity", "Employee")
                         .WithMany("Orders")
-                        .HasForeignKey("EmployeeID");
+                        .HasForeignKey("EmployeeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Restaurant.Infrasturcture.Entities.ShipperEntity", "Shipper")
                         .WithMany("Orders")

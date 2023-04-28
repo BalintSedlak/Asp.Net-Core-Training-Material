@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,11 +11,12 @@ namespace Restaurant.Infrasturcture.Entities;
 /// <summary>
 /// The category.
 /// </summary>
+[PrimaryKey("CategoryId")]
 [Table("Categories")]
 public partial class CategoryEntity
 {
     [Key, Column("Id", Order = 0)]
-    public int Id { get; set; }
+    public int CategoryId { get; set; }
     /// <summary>
     /// Gets or sets the category name.
     /// </summary>

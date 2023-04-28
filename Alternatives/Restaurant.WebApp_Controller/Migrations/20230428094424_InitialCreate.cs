@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Restaurant.WebApp_Controller.Migrations
 {
     /// <inheritdoc />
-    public partial class Migration0 : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -200,7 +200,7 @@ namespace Restaurant.WebApp_Controller.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CustomerID = table.Column<int>(type: "int", maxLength: 5, nullable: false),
-                    EmployeeID = table.Column<int>(type: "int", nullable: true),
+                    EmployeeID = table.Column<int>(type: "int", nullable: false),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     RequiredDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ShippedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -226,7 +226,8 @@ namespace Restaurant.WebApp_Controller.Migrations
                         name: "FK_Orders_Employees_EmployeeID",
                         column: x => x.EmployeeID,
                         principalTable: "Employees",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Orders_Shippers_ShipVia",
                         column: x => x.ShipVia,
@@ -269,14 +270,13 @@ namespace Restaurant.WebApp_Controller.Migrations
                 name: "EmployeeTerritories",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     EmployeeID = table.Column<int>(type: "int", nullable: false),
                     TerritoryID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EmployeeTerritories", x => x.Id);
+                    table.PrimaryKey("PK_EmployeeTerritories", x => new { x.EmployeeID, x.TerritoryID });
                     table.ForeignKey(
                         name: "FK_EmployeeTerritories_Employees_EmployeeID",
                         column: x => x.EmployeeID,
@@ -295,8 +295,7 @@ namespace Restaurant.WebApp_Controller.Migrations
                 name: "Order Details",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     OrderID = table.Column<int>(type: "int", nullable: false),
                     ProductID = table.Column<int>(type: "int", nullable: false),
                     UnitPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -305,7 +304,7 @@ namespace Restaurant.WebApp_Controller.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Order Details", x => x.Id);
+                    table.PrimaryKey("PK_Order Details", x => new { x.OrderID, x.ProductID });
                     table.ForeignKey(
                         name: "FK_Order Details_Orders_OrderID",
                         column: x => x.OrderID,
@@ -336,19 +335,9 @@ namespace Restaurant.WebApp_Controller.Migrations
                 column: "ReportsTo");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmployeeTerritories_EmployeeID",
-                table: "EmployeeTerritories",
-                column: "EmployeeID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_EmployeeTerritories_TerritoryID",
                 table: "EmployeeTerritories",
                 column: "TerritoryID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Order Details_OrderID",
-                table: "Order Details",
-                column: "OrderID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Order Details_ProductID",
