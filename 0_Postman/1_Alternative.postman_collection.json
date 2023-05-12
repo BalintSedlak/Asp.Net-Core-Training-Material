@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "e2a5b1d7-327c-49e3-b8e2-f070b02e4bdc",
-		"name": "Controller",
+		"name": "1_Alternative",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "1842694",
 		"_collection_link": "https://lively-crescent-144617.postman.co/workspace/MinimalApiDemo~2da3e333-aa5a-4016-82e1-aa6b944d7c3a/collection/1842694-e2a5b1d7-327c-49e3-b8e2-f070b02e4bdc?action=share&creator=1842694&source=collection_link"
@@ -35,7 +35,7 @@
 						},
 						{
 							"key": "Drinks[0]",
-							"value": "2",
+							"value": "5",
 							"description": "\n",
 							"type": "text"
 						},
@@ -77,12 +77,12 @@
 					]
 				},
 				"url": {
-					"raw": "https://localhost:7236/Parameters/Order/Complex",
+					"raw": "https://localhost:7066/Parameters/Order/Complex",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "7236",
+					"port": "7066",
 					"path": [
 						"Parameters",
 						"Order",
@@ -102,7 +102,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "true",
+					"raw": "false",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -110,17 +110,17 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:7236/Parameters/Order/DrinkWithIce/2",
+					"raw": "https://localhost:7066/Parameters/Order/DrinkWithIce/5",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "7236",
+					"port": "7066",
 					"path": [
 						"Parameters",
 						"Order",
 						"DrinkWithIce",
-						"2"
+						"5"
 					]
 				}
 			},
@@ -132,12 +132,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:7236/Parameters/Order/Food/Delivery/2?ZipCode=1117&Street=Alizutca2",
+					"raw": "https://localhost:7066/Parameters/Order/Food/Delivery/2?ZipCode=1117&Street=Alizutca2",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "7236",
+					"port": "7066",
 					"path": [
 						"Parameters",
 						"Order",
@@ -185,12 +185,12 @@
 					]
 				},
 				"url": {
-					"raw": "https://localhost:7236/Verb/PostNewDrink",
+					"raw": "https://localhost:7066/Verb/PostNewDrink",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "7236",
+					"port": "7066",
 					"path": [
 						"Verb",
 						"PostNewDrink"
@@ -214,7 +214,7 @@
 						},
 						{
 							"key": "Name",
-							"value": "L'Putto",
+							"value": "L'baguette",
 							"type": "text"
 						},
 						{
@@ -225,12 +225,12 @@
 					]
 				},
 				"url": {
-					"raw": "https://localhost:7236/Verb/PutDrink",
+					"raw": "https://localhost:7066/Verb/PutDrink",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "7236",
+					"port": "7066",
 					"path": [
 						"Verb",
 						"PutDrink"
@@ -265,12 +265,12 @@
 					]
 				},
 				"url": {
-					"raw": "https://localhost:7236/Verb/PatchDrinkItemPrice?id=1&drinkPrice=99",
+					"raw": "https://localhost:7066/Verb/PatchDrinkItemPrice?id=1&drinkPrice=99",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "7236",
+					"port": "7066",
 					"path": [
 						"Verb",
 						"PatchDrinkItemPrice"
@@ -315,12 +315,12 @@
 					]
 				},
 				"url": {
-					"raw": "https://localhost:7236/Verb/DeleteDrink/4",
+					"raw": "https://localhost:7066/Verb/DeleteDrink/4",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "7236",
+					"port": "7066",
 					"path": [
 						"Verb",
 						"DeleteDrink",

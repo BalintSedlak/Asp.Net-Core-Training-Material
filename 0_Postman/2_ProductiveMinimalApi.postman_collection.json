@@ -1,0 +1,81 @@
+{
+	"info": {
+		"_postman_id": "f72d1bf0-c8b1-49d3-ba33-371d3189cec1",
+		"name": "2_ProductiveMinimalApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1842694",
+		"_collection_link": "https://lively-crescent-144617.postman.co/workspace/MinimalApiDemo~2da3e333-aa5a-4016-82e1-aa6b944d7c3a/collection/1842694-f72d1bf0-c8b1-49d3-ba33-371d3189cec1?action=share&creator=1842694&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "/Product/Modify",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Id",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "PriceIncreaseInPercent",
+							"value": "0.05",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:7184/Product/Modify",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7184",
+					"path": [
+						"Product",
+						"Modify"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/Product/Modify2",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Id",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "PriceIncreaseInPercent",
+							"value": "0.05",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:7184/Product/Modify2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7184",
+					"path": [
+						"Product",
+						"Modify2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

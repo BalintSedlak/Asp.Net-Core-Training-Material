@@ -29,6 +29,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.MediatR.WebApp",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.MediatR.WebApp.Test", "3_MediatR\Restaurant.MediatR.WebApp.Test\Restaurant.MediatR.WebApp.Test.csproj", "{3CCBE0A1-1A58-45B1-87B3-998FD270702C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0_Postman", "0_Postman", "{C8C31EBE-9A11-4A2C-A568-B2358AEF6D9F}"
+	ProjectSection(SolutionItems) = preProject
+		0_Postman\1_Alternative.postman_collection.json = 0_Postman\1_Alternative.postman_collection.json
+		0_Postman\2_ProductiveMinimalApi.postman_collection.json = 0_Postman\2_ProductiveMinimalApi.postman_collection.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
