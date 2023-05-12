@@ -7,6 +7,13 @@ namespace Restaurant.WebApp_Controller.Controllers;
 [Route("[controller]")]
 public class VerbController : Controller
 {
+    //Frequently used verbs:
+    // Get    - Get object from server
+    // Post   - Add new object to server
+    // Put    - Fully Replace object in server 
+    // Patch  - Partialy update object in server
+    // Delete - Delete object from server
+
     /*HTTP defines a set of request methods to indicate the desired action to be performed for a given resource.
     *A request method can be safe, idempotent, or cacheable.
     *
@@ -40,18 +47,18 @@ public class VerbController : Controller
     *
     *There are specific headers in the response, like Cache-Control, that prevents caching.
     */
+    IQueryable
 
-    
-    private static List<DrinkViewModel> _drinks = new() { new DrinkViewModel(0, "Margarita", 10), new DrinkViewModel(1, "Mojito", 12), new DrinkViewModel(2, "Martini", 7), new DrinkViewModel(3, "Whiskey", 11) };
+    private static List<DrinkCommand> _drinks = new() { new DrinkCommand(0, "Margarita", 10), new DrinkCommand(1, "Mojito", 12), new DrinkCommand(2, "Martini", 7), new DrinkCommand(3, "Whiskey", 11) };
 
     [HttpGet("[action]")]
-    public IEnumerable<DrinkViewModel> GetAllDrink()
+    public IEnumerable<DrinkCommand> GetAllDrink()
     {
         return _drinks;
     }
 
     [HttpPost("[action]")]
-    public IEnumerable<DrinkViewModel> PostNewDrink([FromForm] DrinkViewModel viewModel)
+    public IEnumerable<DrinkCommand> PostNewDrink([FromForm] DrinkCommand viewModel)
     {
         _drinks.Add(viewModel);
 
@@ -70,7 +77,7 @@ public class VerbController : Controller
     //                  |     |       |
 
     [HttpPut("[action]")]
-    public IEnumerable<DrinkViewModel> PutDrink([FromForm] DrinkViewModel viewModel)
+    public IEnumerable<DrinkCommand> PutDrink([FromForm] DrinkCommand viewModel)
     {
         _drinks[viewModel.Id] = viewModel;
 
@@ -78,7 +85,7 @@ public class VerbController : Controller
     }
 
     [HttpPatch("[action]")]
-    public IEnumerable<DrinkViewModel> PatchDrinkItemPrice([FromQuery] int id, [FromQuery] int drinkPrice)
+    public IEnumerable<DrinkCommand> PatchDrinkItemPrice([FromQuery] int id, [FromQuery] int drinkPrice)
     {
         _drinks[id].Price = drinkPrice;
 
@@ -86,7 +93,7 @@ public class VerbController : Controller
     }
 
     [HttpDelete("[action]/{id}")]
-    public IEnumerable<DrinkViewModel> DeleteDrink(int id)
+    public IEnumerable<DrinkCommand> DeleteDrink(int id)
     {
         _drinks.RemoveAt(id);
 

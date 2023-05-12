@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Restaurant.Core;
 using Restaurant.Infrasturcture;
 using Restaurant.Infrasturcture.Entities;
 using Restaurant.Infrasturcture.Repository;
@@ -16,6 +17,7 @@ builder.Services.AddSwaggerGen(c =>
 
 // Add services to the container.
 builder.Services.AddDbContext<RestaurantContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString")));
+
 builder.Services.AddScoped<IAsyncRepository<CategoryEntity>, EfRepository<CategoryEntity>>();
 builder.Services.AddScoped<IAsyncRepository<CustomerDemographicEntity>, EfRepository<CustomerDemographicEntity>>();
 builder.Services.AddScoped<IAsyncRepository<CustomerEntity>, EfRepository<CustomerEntity>>();
@@ -29,6 +31,8 @@ builder.Services.AddScoped<IAsyncRepository<RegionEntity>, EfRepository<RegionEn
 builder.Services.AddScoped<IAsyncRepository<ShipperEntity>, EfRepository<ShipperEntity>>();
 builder.Services.AddScoped<IAsyncRepository<SupplierEntity>, EfRepository<SupplierEntity>>();
 builder.Services.AddScoped<IAsyncRepository<TerritoryEntity>, EfRepository<TerritoryEntity>>();
+
+builder.Services.AddScoped<ProductService>();
 
 //Scoped-
 //Transient-

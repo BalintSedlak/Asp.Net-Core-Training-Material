@@ -396,4 +396,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-*.txt
+
+# Automated test result
+*.Received.txt

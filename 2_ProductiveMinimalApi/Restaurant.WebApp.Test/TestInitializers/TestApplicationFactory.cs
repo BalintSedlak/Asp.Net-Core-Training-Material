@@ -4,11 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Restaurant.Infrasturcture;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Restaurant.WebApp.Test.TestInitializers;
 internal class TestApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class

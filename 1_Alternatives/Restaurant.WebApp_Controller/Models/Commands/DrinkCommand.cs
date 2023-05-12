@@ -1,17 +1,17 @@
 ﻿namespace Restaurant.WebApp_Controller.Models.ViewModels;
 
-public class DrinkViewModel
+public class DrinkCommand
 {
     public int Id { get; set; }
     public string Name { get; set; }
     public int Price { get; set; }
 
-    public DrinkViewModel()
+    public DrinkCommand()
     {
 
     }
 
-    public DrinkViewModel(int id, string name, int price)
+    public DrinkCommand(int id, string name, int price)
     {
         Id = id;
         Name = name;

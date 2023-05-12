@@ -1,6 +1,6 @@
 ﻿namespace Restaurant.WebApp_Controller.Models.ViewModels;
 
-public class ComplexOrderViewModel
+public class ComplexOrderCommand
 {
     public IEnumerable<int> Foods { get; set; }
     public IEnumerable<int> Drinks { get; set; }

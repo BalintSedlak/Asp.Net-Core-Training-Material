@@ -103,9 +103,14 @@ public class ParametersController : Controller
 
     //Order with complex type
     [HttpGet("Order/Complex")]
-    public ComplexOrderDTO GetComplexOrder([FromForm] ComplexOrderViewModel viewModel)
+    public ComplexOrderResponse GetComplexOrder([FromForm] ComplexOrderCommand viewModel)
     {
-        ComplexOrderDTO complexOrderDTO = new();
+        if (viewModel is null)
+        {
+            throw new ArgumentNullException(nameof(viewModel));
+        }
+
+        ComplexOrderResponse complexOrderDTO = new();
 
         foreach (var id in viewModel.Drinks)
         {
@@ -127,7 +132,7 @@ public class ParametersController : Controller
 
     //Order with complex type in uri (It's not FromUri!!!)
     [HttpGet("Order/Food/Delivery/{id}/")]
-    public string GetFromBody(int id, [FromQuery] FoodDeliveryViewModel viewModel)
+    public string GetFromBody(int id, [FromQuery] FoodDeliveryCommand viewModel)
     {
         string response = $"{_foods[id]} deliverd to {viewModel.ZipCode}, {viewModel.Street}";
 
