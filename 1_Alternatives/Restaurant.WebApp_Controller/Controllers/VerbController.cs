@@ -47,7 +47,6 @@ public class VerbController : Controller
     *
     *There are specific headers in the response, like Cache-Control, that prevents caching.
     */
-    IQueryable
 
     private static List<DrinkCommand> _drinks = new() { new DrinkCommand(0, "Margarita", 10), new DrinkCommand(1, "Mojito", 12), new DrinkCommand(2, "Martini", 7), new DrinkCommand(3, "Whiskey", 11) };
 
