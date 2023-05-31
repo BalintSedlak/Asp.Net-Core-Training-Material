@@ -1,14 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using Restaurant.Core;
-using Restaurant.Infrasturcture;
-using Restaurant.Infrasturcture.Entities;
-using Restaurant.Infrasturcture.Repository;
+using Restaurant.DDD.Core;
+using Restaurant.DDD.Infrasturcture;
+using Restaurant.DDD.Infrasturcture.Entities;
+using Restaurant.DDD.Infrasturcture.Repository;
+using Restaurant.DDD.SharedKernel;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers(options => options.UseNamespaceRouteToken());
-builder.Services.AddSwaggerGen();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "RestaurantApp", Version = "v1" });
@@ -32,8 +32,6 @@ builder.Services.AddScoped<IAsyncRepository<RegionEntity>, EfRepository<RegionEn
 builder.Services.AddScoped<IAsyncRepository<ShipperEntity>, EfRepository<ShipperEntity>>();
 builder.Services.AddScoped<IAsyncRepository<SupplierEntity>, EfRepository<SupplierEntity>>();
 builder.Services.AddScoped<IAsyncRepository<TerritoryEntity>, EfRepository<TerritoryEntity>>();
-
-builder.Services.AddScoped<ProductService>();
 
 //Scoped-
 //Transient-

@@ -1,20 +1,10 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
-using Restaurant.Core;
-using Restaurant.Infrasturcture;
-using Restaurant.Infrasturcture.Entities;
-using Restaurant.Infrasturcture.Repository;
+using RestaurantDemo.DDD.SpecificationPattern.DB;
+using RestaurantDemo.DDD.SpecificationPattern.DB.Entities;
+using RestaurantDemo.DDD.SpecificationPattern.DB.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
-
 builder.Services.AddControllers(options => options.UseNamespaceRouteToken());
-builder.Services.AddSwaggerGen();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "RestaurantApp", Version = "v1" });
-    c.EnableAnnotations();
-    c.UseApiEndpoints();
-});
 
 // Add services to the container.
 builder.Services.AddDbContext<RestaurantContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString")));
@@ -33,21 +23,10 @@ builder.Services.AddScoped<IAsyncRepository<ShipperEntity>, EfRepository<Shipper
 builder.Services.AddScoped<IAsyncRepository<SupplierEntity>, EfRepository<SupplierEntity>>();
 builder.Services.AddScoped<IAsyncRepository<TerritoryEntity>, EfRepository<TerritoryEntity>>();
 
-builder.Services.AddScoped<ProductService>();
-
-//Scoped-
-//Transient-
-//Singleton-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-    app.UseSwagger();
-    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RestaurantApp V1"));
-}
+
 
 app.UseHttpsRedirection();
 app.UseRouting();
@@ -58,9 +37,8 @@ app.UseEndpoints(endpoints =>
     endpoints.MapControllers();
 });
 
+
 app.Run();
-
-
 
 // Make the implicit Program class public so test projects can access it
 public partial class Program { }
