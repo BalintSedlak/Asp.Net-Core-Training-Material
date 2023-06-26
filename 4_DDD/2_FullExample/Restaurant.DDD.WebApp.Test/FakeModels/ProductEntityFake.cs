@@ -1,14 +1,12 @@
 ﻿using Bogus;
-using Restaurant.Infrasturcture.Entities;
+using Restaurant.DDD.Infrasturcture.Entities;
 
 namespace Restaurant.WebApp.Test.FakeModels;
 internal class ProductEntityFake : Faker<ProductEntity>
 {
-    private static int _idCounter = 1;
-
     public ProductEntityFake()
     {
-        RuleFor(x => x.Id, f => _idCounter++);
+        RuleFor(x => x.Id, f => new Guid());
         RuleFor(x => x.ProductName, f => f.Commerce.ProductName());
         RuleFor(x => x.SupplierID, f => f.Random.Int(1, 20));
         RuleFor(x => x.CategoryID, f => f.Random.Int(1, 20));

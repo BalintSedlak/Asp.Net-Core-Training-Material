@@ -2,9 +2,9 @@
 
 public interface IAsyncRepository<T> where T : Entity
 {
-    Task<T> GetByIdAsync(int id, CancellationToken cancellationToken);
+    Task<T> GetByIdAsync(Guid id, CancellationToken cancellationToken);
 
-    Task<IReadOnlyList<T>> GetByIdsAsync(IEnumerable<int> ids, CancellationToken cancellationToken);
+    Task<IReadOnlyList<T>> GetByIdsAsync(IEnumerable<Guid> ids, CancellationToken cancellationToken);
 
     Task<IReadOnlyList<T>> ListAllAsync(CancellationToken cancellationToken);
 

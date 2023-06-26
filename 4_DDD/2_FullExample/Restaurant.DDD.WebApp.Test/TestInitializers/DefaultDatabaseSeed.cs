@@ -12,7 +12,7 @@ internal class DefaultDatabaseSeed : IDatabaseSeed
         for (int i = 1; i <= 10; i++)
         {
             var categoryFaker = new Faker<CategoryEntity>()
-            .RuleFor(x => x.Id, f => i)
+            .RuleFor(x => x.Id, f => new Guid())
             .RuleFor(x => x.CategoryName, f => f.Commerce.Categories(1)[0])
             .RuleFor(x => x.Description, f => f.Lorem.Paragraph(1))
             .RuleFor(x => x.Picture, f => f.Random.Bytes(20));

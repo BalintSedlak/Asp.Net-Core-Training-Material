@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore.Infrastructure;
-using Restaurant.DDD.Core.Category.Errors;
+using Restaurant.DDD.Core.CategoryDomain.Errors;
 using Restaurant.DDD.SharedKernel;
 using System;
 
-namespace Restaurant.DDD.Core.Category.ValueObjects;
+namespace Restaurant.DDD.Core.CategoryDomain.ValueObjects;
 
 public class Category : ValueObject<Category>
 {

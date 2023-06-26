@@ -8,7 +8,7 @@ using Restaurant.WebApp.Endpoints;
 namespace Restaurant.DDD.WebApp.Endpoints;
 
 public class GetProductBasicEndpoint : EndpointBaseAsync
-    .WithRequest<int>
+    .WithRequest<Guid>
     .WithActionResult<GetProductBasicEndpointResult>
 {
     private readonly IAsyncRepository<ProductEntity> _repository;
@@ -19,7 +19,7 @@ public class GetProductBasicEndpoint : EndpointBaseAsync
     }
 
     [HttpGet("/Product/{request}/Basic")]
-    public override async Task<ActionResult<GetProductBasicEndpointResult>> HandleAsync(int request, CancellationToken cancellationToken = default)
+    public override async Task<ActionResult<GetProductBasicEndpointResult>> HandleAsync(Guid request, CancellationToken cancellationToken = default)
     {
         ProductEntity product = await _repository.GetByIdAsync(request, cancellationToken);
         GetProductBasicEndpointResult response = product.Adapt<GetProductBasicEndpointResult>();

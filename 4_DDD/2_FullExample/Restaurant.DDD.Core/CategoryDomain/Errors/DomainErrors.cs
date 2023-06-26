@@ -1,6 +1,6 @@
 ﻿using Restaurant.DDD.SharedKernel;
 
-namespace Restaurant.DDD.Core.Category.Errors;
+namespace Restaurant.DDD.Core.CategoryDomain.Errors;
 
 public static class DomainErrors
 {

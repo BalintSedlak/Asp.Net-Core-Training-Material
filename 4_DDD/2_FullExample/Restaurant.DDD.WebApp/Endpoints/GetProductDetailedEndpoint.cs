@@ -7,7 +7,7 @@ using Restaurant.DDD.SharedKernel;
 namespace Restaurant.WebApp.Endpoints;
 
 public class GetProductDetailedEndpoint : EndpointBaseAsync
-    .WithRequest<int>
+    .WithRequest<Guid>
     .WithActionResult<GetProductDetailedEndpointResult>
 {
     private readonly IAsyncRepository<ProductEntity> _repository;
@@ -18,7 +18,7 @@ public class GetProductDetailedEndpoint : EndpointBaseAsync
     }
 
     [HttpGet("/Product/{request}/Detailed")]
-    public override async Task<ActionResult<GetProductDetailedEndpointResult>> HandleAsync(int request, CancellationToken cancellationToken = default)
+    public override async Task<ActionResult<GetProductDetailedEndpointResult>> HandleAsync(Guid request, CancellationToken cancellationToken = default)
     {
         ProductEntity product = await _repository.GetByIdAsync(request, cancellationToken);
         GetProductDetailedEndpointResult response = product.Adapt<GetProductDetailedEndpointResult>();
