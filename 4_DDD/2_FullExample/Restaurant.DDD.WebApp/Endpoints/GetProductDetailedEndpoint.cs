@@ -3,6 +3,7 @@ using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Restaurant.DDD.Infrasturcture.Entities;
 using Restaurant.DDD.SharedKernel;
+using Restaurant.DDD.WebApp.Endpoints;
 
 namespace Restaurant.WebApp.Endpoints;
 

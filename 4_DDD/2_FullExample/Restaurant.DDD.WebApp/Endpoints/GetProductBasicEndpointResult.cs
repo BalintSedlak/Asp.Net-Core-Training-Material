@@ -1,4 +1,4 @@
-﻿namespace Restaurant.WebApp.Endpoints;
+﻿namespace Restaurant.DDD.WebApp.Endpoints;
 
 public class GetProductBasicEndpointResult
 {

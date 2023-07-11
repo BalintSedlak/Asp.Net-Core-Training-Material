@@ -26,7 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Restaurant.DDD.Core\Restaurant.DDD.Core.csproj" />
-    <ProjectReference Include="..\Restaurant.DDD.Infrastructure2\Restaurant.DDD.Infrastructure.csproj" />
+    <ProjectReference Include="..\Restaurant.DDD.Infrastructure\Restaurant.DDD.Infrastructure.csproj" />
     <ProjectReference Include="..\Restaurant.DDD.SharedKernel\Restaurant.DDD.SharedKernel.csproj" />
   </ItemGroup>
 
