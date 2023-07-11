@@ -1,16 +1,20 @@
-﻿namespace Restaurant.DDD.SharedKernel;
+﻿using Restaurant.DDD.Core.Products.ValueObjects;
 
-public abstract class AggregateRoot : Entity
+namespace Restaurant.DDD.SharedKernel;
+
+public abstract class AggregateRoot<T> : Entity where T : AggregateId
 {
-    protected AggregateRoot(Guid id) : base(id)
-    {
+    public AggregateId IdObject { get; }
 
+    protected AggregateRoot(AggregateId idObject) : base(idObject.Id)
+    {
+        IdObject = idObject;
     }
 
-    protected AggregateRoot()
-    {
+    //protected AggregateRoot()
+    //{
 
-    }
+    //}
 
     //TODO: DomainEvents
 

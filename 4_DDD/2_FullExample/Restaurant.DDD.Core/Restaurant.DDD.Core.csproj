@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <Folder Include="CategoryDomain\Specifications\" />
+    <Folder Include="Employees\" />
   </ItemGroup>
 
   <ItemGroup>
