@@ -11,8 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3_Mediatr", "3_Mediatr", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Core", "2_ProductiveMinimalApi\Restaurant.Core\Restaurant.Core.csproj", "{F23D2FF8-0CB6-4C5E-8B58-45B6F78030DE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Infrasturcture", "2_ProductiveMinimalApi\Restaurant.Infrasturcture\Restaurant.Infrasturcture.csproj", "{3A6B34EC-FD52-40A6-99E8-49364664C953}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.WebApp", "2_ProductiveMinimalApi\Restaurant.WebApp\Restaurant.WebApp.csproj", "{23BD23B1-9AA4-4B3E-89AC-B5D858485E92}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.WebApp.Test", "2_ProductiveMinimalApi\Restaurant.WebApp.Test\Restaurant.WebApp.Test.csproj", "{1DFC90F4-2843-483A-8FB8-8366E7C3F6C9}"
@@ -76,6 +74,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Docker.WebApp", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Docker.WebApp.Test", "5_Docker\Restaurant.Docker.WebApp.Test\Restaurant.Docker.WebApp.Test.csproj", "{C265E7AA-9C8D-4C10-AFAA-4F0F7D390AA7}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Infrasturcture", "2_ProductiveMinimalApi\Restaurant.Infrasturcture\Restaurant.Infrasturcture.csproj", "{E14C5D8C-249A-420A-937A-64C1B3358661}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,10 +86,6 @@ Global
 		{F23D2FF8-0CB6-4C5E-8B58-45B6F78030DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F23D2FF8-0CB6-4C5E-8B58-45B6F78030DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F23D2FF8-0CB6-4C5E-8B58-45B6F78030DE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3A6B34EC-FD52-40A6-99E8-49364664C953}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3A6B34EC-FD52-40A6-99E8-49364664C953}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3A6B34EC-FD52-40A6-99E8-49364664C953}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3A6B34EC-FD52-40A6-99E8-49364664C953}.Release|Any CPU.Build.0 = Release|Any CPU
 		{23BD23B1-9AA4-4B3E-89AC-B5D858485E92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{23BD23B1-9AA4-4B3E-89AC-B5D858485E92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23BD23B1-9AA4-4B3E-89AC-B5D858485E92}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -170,13 +166,16 @@ Global
 		{C265E7AA-9C8D-4C10-AFAA-4F0F7D390AA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C265E7AA-9C8D-4C10-AFAA-4F0F7D390AA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C265E7AA-9C8D-4C10-AFAA-4F0F7D390AA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E14C5D8C-249A-420A-937A-64C1B3358661}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E14C5D8C-249A-420A-937A-64C1B3358661}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E14C5D8C-249A-420A-937A-64C1B3358661}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E14C5D8C-249A-420A-937A-64C1B3358661}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F23D2FF8-0CB6-4C5E-8B58-45B6F78030DE} = {08E2A8FB-F4A5-472B-84E2-916725F2A499}
-		{3A6B34EC-FD52-40A6-99E8-49364664C953} = {08E2A8FB-F4A5-472B-84E2-916725F2A499}
 		{23BD23B1-9AA4-4B3E-89AC-B5D858485E92} = {08E2A8FB-F4A5-472B-84E2-916725F2A499}
 		{1DFC90F4-2843-483A-8FB8-8366E7C3F6C9} = {08E2A8FB-F4A5-472B-84E2-916725F2A499}
 		{B2EBA5B7-9B8E-4BBE-8D81-2D53703AE196} = {F42612AE-1423-4B4B-913C-313DB883BB7F}
@@ -202,6 +201,7 @@ Global
 		{748B66D2-2E36-4F3D-9314-D6088A8E5320} = {4FD66C34-5D1C-426C-8F30-362E270D9755}
 		{178FB96F-C830-4071-9661-3CD99F43DB5B} = {4FD66C34-5D1C-426C-8F30-362E270D9755}
 		{C265E7AA-9C8D-4C10-AFAA-4F0F7D390AA7} = {4FD66C34-5D1C-426C-8F30-362E270D9755}
+		{E14C5D8C-249A-420A-937A-64C1B3358661} = {08E2A8FB-F4A5-472B-84E2-916725F2A499}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D11A4D0C-2091-4158-A63C-388C1A7783E6}
