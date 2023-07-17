@@ -15,16 +15,8 @@ public class EfRepository<T> : IAsyncRepository<T> where T : BaseEntity
 
     public async Task<T> AddAsync(T entity, CancellationToken cancellationToken)
     {
-        try
-        {
-            await _context.Set<T>().AddAsync(entity, cancellationToken);
-            await _context.SaveChangesAsync(cancellationToken);
-        }
-        catch (Exception ex)
-        {
-            //TODO
-            throw;
-        }
+        await _context.Set<T>().AddAsync(entity, cancellationToken);
+        await _context.SaveChangesAsync(cancellationToken);
 
         return entity;
     }
@@ -67,8 +59,7 @@ public class EfRepository<T> : IAsyncRepository<T> where T : BaseEntity
         return result.ToList();
     }
 
-    private async Task<IQueryable<T>> ApplySpecification(
-        Specification<T> specification)
+    private async Task<IQueryable<T>> ApplySpecification(Specification<T> specification)
     {
         return SpecificationEvaluator.GetQuery(
             _context.Set<T>(),
