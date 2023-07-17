@@ -8,5 +8,7 @@ public class ProductByIdSpecification : Specification<ProductEntity>
 	{
 		//AddInclude(product => product.Category);
 		//AddInclude(product => product.Supplier);
+
+		//IsSplitQuery = true;
 	}
 }

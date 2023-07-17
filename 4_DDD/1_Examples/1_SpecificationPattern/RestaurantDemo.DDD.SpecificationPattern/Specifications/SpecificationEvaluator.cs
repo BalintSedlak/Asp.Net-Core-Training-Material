@@ -33,6 +33,11 @@ public static class SpecificationEvaluator
                 specification.OrderByDescendingExpression);
         }
 
+        if (specification.IsSplitQuery)
+        {
+            queryable = queryable.AsSplitQuery();
+        }
+
         return queryable;
     }
 }

@@ -5,6 +5,7 @@ namespace RestaurantDemo.DDD.SpecificationPattern.Specifications;
 
 public abstract class Specification<TEntity> where TEntity : BaseEntity
 {
+    public bool IsSplitQuery { get; protected set; }
     public Expression<Func<TEntity, bool>>? Criteria { get; init; }
     public List<Expression<Func<TEntity, object>>> IncludeExpression { get; init; }
     public Expression<Func<TEntity, object>>? OrderByExpression { get; private set; }
