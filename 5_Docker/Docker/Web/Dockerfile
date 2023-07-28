@@ -9,8 +9,6 @@ COPY . .
 RUN dotnet restore "./Restaurant.Docker.WebApp/Restaurant.Docker.WebApp.csproj"
 RUN dotnet publish "./Restaurant.Docker.WebApp/Restaurant.Docker.WebApp.csproj" -c release -o /app --no-restore
 
-RUN dotnet Update-Database
-
 #Runtime Stage
 From mcr.microsoft.com/dotnet/sdk:7.0 AS serve-env
 WORKDIR /app

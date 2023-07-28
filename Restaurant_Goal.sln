@@ -76,8 +76,16 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{5EB6BC36-124E-44BC-B96C-3FEBB00A593B}"
 	ProjectSection(SolutionItems) = preProject
 		5_Docker\docker-compose.yml = 5_Docker\docker-compose.yml
-		5_Docker\Docker\Mssql.Dockerfile = 5_Docker\Docker\Mssql.Dockerfile
-		5_Docker\Docker\Web.Dockerfile = 5_Docker\Docker\Web.Dockerfile
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mssql", "Mssql", "{B3ED4A69-B2E3-45E4-8392-C730BD48D602}"
+	ProjectSection(SolutionItems) = preProject
+		5_Docker\Docker\Mssql\Dockerfile = 5_Docker\Docker\Mssql\Dockerfile
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{F08D30AC-288B-488C-86CF-5AC3A42446C9}"
+	ProjectSection(SolutionItems) = preProject
+		5_Docker\Docker\Web\Dockerfile = 5_Docker\Docker\Web\Dockerfile
 	EndProjectSection
 EndProject
 Global
@@ -207,6 +215,8 @@ Global
 		{178FB96F-C830-4071-9661-3CD99F43DB5B} = {4FD66C34-5D1C-426C-8F30-362E270D9755}
 		{C265E7AA-9C8D-4C10-AFAA-4F0F7D390AA7} = {4FD66C34-5D1C-426C-8F30-362E270D9755}
 		{5EB6BC36-124E-44BC-B96C-3FEBB00A593B} = {4FD66C34-5D1C-426C-8F30-362E270D9755}
+		{B3ED4A69-B2E3-45E4-8392-C730BD48D602} = {5EB6BC36-124E-44BC-B96C-3FEBB00A593B}
+		{F08D30AC-288B-488C-86CF-5AC3A42446C9} = {5EB6BC36-124E-44BC-B96C-3FEBB00A593B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D11A4D0C-2091-4158-A63C-388C1A7783E6}
