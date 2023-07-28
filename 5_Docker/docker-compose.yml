@@ -1,0 +1,26 @@
+version: '3.4'
+services:
+ mssql-server:
+  build: 
+   context: .
+   dockerfile: ./docker/Mssql/Dockerfile
+  environment:
+   SA_PASSWORD: 'Docker1234'
+   MSSQL_PID: Express
+  ports:
+   - "1433:1433"
+  restart: always
+ restaurant-app:
+  build:
+   context: .
+   dockerfile: ./docker/Web/Dockerfile
+  environment:
+   DatabaseServer: "mssql-server"
+   DatabasePort: "1433"
+   DatabaseUser: "SA"
+   DatabasePassword: "Docker1234"
+   DatabaseName: "NortwindDocker"
+  ports:
+   - "5000:8080"   
+  depends_on:
+   - mssql-server

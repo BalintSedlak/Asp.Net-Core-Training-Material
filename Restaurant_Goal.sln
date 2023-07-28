@@ -64,9 +64,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.DDD.Infrastructure", "4_DDD\2_FullExample\Restaurant.DDD.Infrastructure\Restaurant.DDD.Infrastructure.csproj", "{C1BC175A-95B7-46CC-B9D0-94A536DE2B10}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5_Docker", "5_Docker", "{4FD66C34-5D1C-426C-8F30-362E270D9755}"
-	ProjectSection(SolutionItems) = preProject
-		5_Docker\Dockerfile = 5_Docker\Dockerfile
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Docker.Core", "5_Docker\Restaurant.Docker.Core\Restaurant.Docker.Core.csproj", "{E7B2F7B8-EEC6-441D-A0B7-DB669C129901}"
 EndProject
@@ -75,6 +72,13 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Docker.WebApp", "5_Docker\Restaurant.Docker.WebApp\Restaurant.Docker.WebApp.csproj", "{178FB96F-C830-4071-9661-3CD99F43DB5B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Docker.WebApp.Test", "5_Docker\Restaurant.Docker.WebApp.Test\Restaurant.Docker.WebApp.Test.csproj", "{C265E7AA-9C8D-4C10-AFAA-4F0F7D390AA7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{5EB6BC36-124E-44BC-B96C-3FEBB00A593B}"
+	ProjectSection(SolutionItems) = preProject
+		5_Docker\docker-compose.yml = 5_Docker\docker-compose.yml
+		5_Docker\Docker\Mssql.Dockerfile = 5_Docker\Docker\Mssql.Dockerfile
+		5_Docker\Docker\Web.Dockerfile = 5_Docker\Docker\Web.Dockerfile
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -202,6 +206,7 @@ Global
 		{748B66D2-2E36-4F3D-9314-D6088A8E5320} = {4FD66C34-5D1C-426C-8F30-362E270D9755}
 		{178FB96F-C830-4071-9661-3CD99F43DB5B} = {4FD66C34-5D1C-426C-8F30-362E270D9755}
 		{C265E7AA-9C8D-4C10-AFAA-4F0F7D390AA7} = {4FD66C34-5D1C-426C-8F30-362E270D9755}
+		{5EB6BC36-124E-44BC-B96C-3FEBB00A593B} = {4FD66C34-5D1C-426C-8F30-362E270D9755}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D11A4D0C-2091-4158-A63C-388C1A7783E6}
