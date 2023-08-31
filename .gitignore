@@ -399,3 +399,4 @@ FodyWeavers.xsd
 
 # Automated test result
 *.Received.txt
+/6_Docker2/.containers
