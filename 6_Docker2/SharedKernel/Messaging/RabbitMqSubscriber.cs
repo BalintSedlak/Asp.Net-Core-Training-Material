@@ -11,6 +11,8 @@ public sealed class RabbitMqSubscriber
 
     public RabbitMqSubscriber(RabbitMqConfiguration rabbitMqConfiguration, string queueName)
 	{
+        _queueName = queueName;
+
         ConnectionFactory connectionFactory = new ConnectionFactory()
         {
             HostName = rabbitMqConfiguration.Host,
@@ -22,8 +24,6 @@ public sealed class RabbitMqSubscriber
 
         connectionFactory.DispatchConsumersAsync = true;
         _connection = connectionFactory.CreateConnection();
-        
-        _queueName = queueName;
     }
 
     public void Subscribe(Action<object> action)
