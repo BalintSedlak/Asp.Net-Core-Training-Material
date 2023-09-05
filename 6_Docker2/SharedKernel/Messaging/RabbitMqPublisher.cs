@@ -1,7 +1,4 @@
-﻿using MassTransit;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
-using RabbitMQ.Client;
+﻿using RabbitMQ.Client;
 using System.Text;
 
 namespace SharedKernel.Messaging;

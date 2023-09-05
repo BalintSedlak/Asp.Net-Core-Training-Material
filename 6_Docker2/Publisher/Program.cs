@@ -1,6 +1,3 @@
-using Autofac;
-using Autofac.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using SharedKernel.Messaging;
@@ -19,19 +16,7 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.Configure<RabbitMqConfiguration>(builder.Configuration.GetSection("RabbitMQ"));
 builder.Services.AddTransient(sp => sp.GetRequiredService<IOptions<RabbitMqConfiguration>>().Value);
 
-var serviceProvider = builder.Services.BuildServiceProvider();
-
-builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
-    .ConfigureContainer<ContainerBuilder>(builder =>
-    {
-        RabbitMqConfiguration rabbitMqConfiguration = serviceProvider.GetRequiredService<RabbitMqConfiguration>();
-        //builder.RegisterModule(new AutofacBusinessModule());
-        builder.Register(context => new RabbitMqPublisher(rabbitMqConfiguration, "myQueue")).Keyed<RabbitMqPublisher>("myQueue").InstancePerLifetimeScope();
-    });
-
-
-
-//builder.Services.AddTransient<RabbitMqPublisher>();
+builder.Services.AddSingleton<RabbitMqServiceFactory>();
 
 var app = builder.Build();
 

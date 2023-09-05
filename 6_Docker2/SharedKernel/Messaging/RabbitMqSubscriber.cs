@@ -1,19 +1,15 @@
-﻿using MassTransit;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
-using RabbitMQ.Client;
+﻿using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Text;
 using System.Threading.Channels;
-using static MassTransit.Logging.OperationName;
 
 namespace SharedKernel.Messaging;
 public sealed class RabbitMqSubscriber
 {
     private readonly IConnection _connection;
-    private readonly IModel _channel;
+    private readonly string _queueName;
 
-    public RabbitMqSubscriber(RabbitMqConfiguration rabbitMqConfiguration)
+    public RabbitMqSubscriber(RabbitMqConfiguration rabbitMqConfiguration, string queueName)
 	{
         ConnectionFactory connectionFactory = new ConnectionFactory()
         {
@@ -26,28 +22,31 @@ public sealed class RabbitMqSubscriber
 
         connectionFactory.DispatchConsumersAsync = true;
         _connection = connectionFactory.CreateConnection();
-        _channel = _connection.CreateModel();
-        _channel.QueueDeclare(queue: "myQueue",
+        
+        _queueName = queueName;
+    }
+
+    public void Subscribe(Action<object> action)
+    {
+        using (var channel = _connection.CreateModel())
+        {
+            var consumer = new AsyncEventingBasicConsumer(channel);
+            consumer.Received += async (model, eventArgs) =>
+            {
+                var body = eventArgs.Body.ToArray();
+                var message = Encoding.UTF8.GetString(body);
+                action.Invoke(message);
+            };
+
+            channel.QueueDeclare(queue: _queueName,
                                   durable: false,
                                   exclusive: false,
                                   autoDelete: false,
                                   arguments: null);
 
-       
-    }
-
-    public void Subscribe(Action<object> action)
-    {
-        var consumer = new AsyncEventingBasicConsumer(_channel);
-        consumer.Received += async (model, eventArgs) =>
-        {
-            var body = eventArgs.Body.ToArray();
-            var message = Encoding.UTF8.GetString(body);
-            action.Invoke(message);
-        };
-
-        _channel.BasicConsume(queue: "myQueue",
+            channel.BasicConsume(queue: _queueName,
                     autoAck: true,
                     consumer: consumer);
+        }
     }
 }

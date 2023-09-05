@@ -33,7 +33,7 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.Configure<RabbitMqConfiguration>(builder.Configuration.GetSection("RabbitMQ"));
 builder.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<RabbitMqConfiguration>>().Value);
 
-builder.Services.AddTransient<RabbitMqSubscriber>();
+builder.Services.AddSingleton<RabbitMqServiceFactory>();
 
 builder.Services.AddSingleton<OrderConsumer>();
 builder.Services.AddSingleton<IRepository<OrderCreated>, Repository<OrderCreated>>();

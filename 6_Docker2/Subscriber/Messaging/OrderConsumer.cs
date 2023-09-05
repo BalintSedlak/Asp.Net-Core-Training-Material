@@ -10,9 +10,9 @@ public class OrderConsumer
     private readonly RabbitMqSubscriber _rabbitMqSubscriber;
     private readonly IRepository<OrderCreated> _repository;
 
-    public OrderConsumer(RabbitMqSubscriber rabbitMqSubscriber, IRepository<OrderCreated> repository)
+    public OrderConsumer(RabbitMqServiceFactory rabbitMqServiceFactory, IRepository<OrderCreated> repository)
     {
-        _rabbitMqSubscriber = rabbitMqSubscriber;
+        _rabbitMqSubscriber = rabbitMqServiceFactory.GetSubscriber("myQueue");
         _repository = repository;
 
         _rabbitMqSubscriber.Subscribe(Consume);
