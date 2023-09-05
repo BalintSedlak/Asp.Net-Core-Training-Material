@@ -1,9 +1,11 @@
-﻿using Ardalis.ApiEndpoints;
+﻿using Autofac;
+using Ardalis.ApiEndpoints;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using SharedKernel.Messaging;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Autofac.Features.AttributeFilters;
 
 namespace Publisher.Endpoints;
 
@@ -13,7 +15,7 @@ public class GetProductBasicEndpoint : EndpointBaseAsync
 {
     private readonly RabbitMqPublisher _rabbitMqPublisher;
 
-    public GetProductBasicEndpoint(RabbitMqPublisher rabbitMqPublisher)
+    public GetProductBasicEndpoint([KeyFilter("myQueue")] RabbitMqPublisher rabbitMqPublisher)
     {
         _rabbitMqPublisher = rabbitMqPublisher;
     }
