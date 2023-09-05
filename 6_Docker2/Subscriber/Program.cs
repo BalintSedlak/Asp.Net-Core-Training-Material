@@ -1,5 +1,4 @@
 using MassTransit;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using SharedKernel.Messaging;
@@ -7,6 +6,19 @@ using Subscriber.Messaging;
 using Subscriber.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("MySite", builder =>
+    {
+        builder.WithOrigins("http://localhost:5672",
+                            "http://localhost:5194",
+                            "http://172.19.112.1:3000")
+        .AllowCredentials()
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+    });
+});
 
 // Add services to the container.
 builder.Services.AddControllers(options => options.UseNamespaceRouteToken());
@@ -18,27 +30,13 @@ builder.Services.AddSwaggerGen(c =>
     c.UseApiEndpoints();
 });
 
-builder.Services.Configure<MessageBrokerSettings>(builder.Configuration.GetSection("RabbitMQ"));
+builder.Services.Configure<RabbitMqConfiguration>(builder.Configuration.GetSection("RabbitMQ"));
+builder.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<RabbitMqConfiguration>>().Value);
 
-builder.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<MessageBrokerSettings>>().Value);
+builder.Services.AddTransient<RabbitMqSubscriber>();
 
-builder.Services.AddMassTransit(busConfigurator =>
-{
-    busConfigurator.SetKebabCaseEndpointNameFormatter();
-    busConfigurator.AddConsumer<OrderConsumer>();
-
-    busConfigurator.UsingRabbitMq((context, busFactoryConfigurator) =>
-    {
-        MessageBrokerSettings messageBrokerSettings = context.GetRequiredService<MessageBrokerSettings>();
-        busFactoryConfigurator.Host(new Uri(messageBrokerSettings.Host), hostConfigurator =>
-        {
-            hostConfigurator.Username(messageBrokerSettings.UserName);
-            hostConfigurator.Password(messageBrokerSettings.Password);
-        });
-    });
-});
-
-builder.Services.AddScoped<IRepository<OrderCreated>, Repository<OrderCreated>>();
+builder.Services.AddSingleton<OrderConsumer>();
+builder.Services.AddSingleton<IRepository<OrderCreated>, Repository<OrderCreated>>();
 
 var app = builder.Build();
 
@@ -53,6 +51,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
+app.UseCors("MySite");
 app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>

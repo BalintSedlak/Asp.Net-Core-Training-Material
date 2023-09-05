@@ -2,6 +2,8 @@
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using SharedKernel.Messaging;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Publisher.Endpoints;
 
@@ -9,11 +11,11 @@ public class GetProductBasicEndpoint : EndpointBaseAsync
     .WithRequest<PostProductOrderRequest>
     .WithActionResult<OrderCreated>
 {
-    private readonly IEventBus _eventBus;
+    private readonly RabbitMqPublisher _rabbitMqPublisher;
 
-    public GetProductBasicEndpoint(IEventBus eventBus)
+    public GetProductBasicEndpoint(RabbitMqPublisher rabbitMqPublisher)
     {
-        _eventBus = eventBus;
+        _rabbitMqPublisher = rabbitMqPublisher;
     }
 
     [HttpPost("/products/order")]
@@ -21,7 +23,7 @@ public class GetProductBasicEndpoint : EndpointBaseAsync
     {
         OrderCreated order = request.Adapt<OrderCreated>();
 
-        await _eventBus.PublishAsync(order, nameof(OrderCreated), cancellationToken);
+        _rabbitMqPublisher.Publish(JsonSerializer.Serialize(order));
 
         return Ok(order);
     }

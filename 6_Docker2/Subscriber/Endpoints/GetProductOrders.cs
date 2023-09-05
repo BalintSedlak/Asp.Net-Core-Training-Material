@@ -2,6 +2,7 @@
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using SharedKernel.Messaging;
+using Subscriber.Messaging;
 using Subscriber.Repository;
 
 namespace Subscriber.Endpoints;
@@ -12,7 +13,7 @@ public class GetProductOrders : EndpointBaseAsync
 {
     private readonly IRepository<OrderCreated> _repository;
 
-    public GetProductOrders(IRepository<OrderCreated> repository)
+    public GetProductOrders(IRepository<OrderCreated> repository, OrderConsumer orderConsumer)
     {
         _repository = repository;
     }

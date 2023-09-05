@@ -1,10 +1,17 @@
-using MassTransit;
-using Microsoft.Extensions.Configuration;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using SharedKernel.Messaging;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
+//    .ConfigureContainer<ContainerBuilder>(builder =>
+//    {
+//        //builder.RegisterModule(new AutofacBusinessModule());
+//        builder.Register(context => new RabbitMqPublisher()).Named<RabbitMqPublisher>("")
+//    });
 
 builder.Services.AddControllers(options => options.UseNamespaceRouteToken());
 builder.Services.AddSwaggerGen();
@@ -15,25 +22,10 @@ builder.Services.AddSwaggerGen(c =>
     c.UseApiEndpoints();
 });
 
-builder.Services.Configure<MessageBrokerSettings>(builder.Configuration.GetSection("RabbitMQ"));
+builder.Services.Configure<RabbitMqConfiguration>(builder.Configuration.GetSection("RabbitMQ"));
+builder.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<RabbitMqConfiguration>>().Value);
 
-builder.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<MessageBrokerSettings>>().Value);
-
-builder.Services.AddMassTransit(busConfigurator =>
-{
-    busConfigurator.SetKebabCaseEndpointNameFormatter();
-    busConfigurator.UsingRabbitMq((context, busFactoryConfigurator) =>
-    {
-        MessageBrokerSettings messageBrokerSettings = context.GetRequiredService<MessageBrokerSettings>();
-        busFactoryConfigurator.Host(new Uri(messageBrokerSettings.Host), hostConfigurator => 
-        {
-            hostConfigurator.Username(messageBrokerSettings.UserName);
-            hostConfigurator.Password(messageBrokerSettings.Password);
-        });
-    });
-});
-
-builder.Services.AddTransient<IEventBus, EventBus>();
+builder.Services.AddTransient<RabbitMqPublisher>();
 
 var app = builder.Build();
 
