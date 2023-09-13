@@ -98,8 +98,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{70EEC6
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Publisher", "Publisher", "{D3D9944F-97C5-4AAE-A5D3-C355471D4C6C}"
+	ProjectSection(SolutionItems) = preProject
+		6_Docker2\Docker\Publisher\Dockerfile = 6_Docker2\Docker\Publisher\Dockerfile
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Subscriber", "Subscriber", "{E05C8286-4443-4E98-8ACA-EBD41148C9E9}"
+	ProjectSection(SolutionItems) = preProject
+		6_Docker2\Docker\Subscriber\Dockerfile = 6_Docker2\Docker\Subscriber\Dockerfile
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedKernel", "6_Docker2\SharedKernel\SharedKernel.csproj", "{9C924DA6-C1F3-4722-8ADB-0AC5B31FB071}"
 EndProject
