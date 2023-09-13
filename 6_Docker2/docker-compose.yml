@@ -1,19 +1,8 @@
 version: '3.4'
 services:
- PubSub-db:
-  image: postgres:latest
-  container_name: PubSub-db
-  environment:
-   - POSTGRES_DB=PubSub
-   - POSTGRES_USER=postgres
-   - POSTGRES_PASSWORD=postgres
-  volumes:
-   - ./.containers/database:/var/lib/postgresql/data
-  ports:
-   - 5432:5432
- PubSub-RabbitMQ:
+ RabbitMQ:
   image: rabbitmq:management
-  container_name: PubSub-RabbitMQ
+  container_name: RabbitMQ
   hostname: pubsub-queue
   volumes:
    - ./.containers/RabbitMQ/data/:/var/lib/rabbitmq
@@ -24,3 +13,29 @@ services:
   environment:
    RABBITMQ_DEFAULT_USER: guest
    RABBITMQ_DEFAULT_PASS: guest
+ publisherApp:
+  image: publisher
+  container_name: publisher
+  build:
+   context: .
+   dockerfile: ./docker/Publisher/Dockerfile
+  environment:
+   RabbitMQ__Host: "localhost"
+   RabbitMQ__Port: "5672"
+   RabbitMQ__Username: "guest"
+   RabbitMQ__Password: "guest"
+  ports:
+   - "5000:8080"   
+ subscriberApp:
+  image: subscriber
+  container_name: subscriber
+  build:
+   context: .
+   dockerfile: ./docker/Subscriber/Dockerfile
+  environment:
+   RabbitMQ__Host: "localhost"
+   RabbitMQ__Port: "5672"
+   RabbitMQ__Username: "guest"
+   RabbitMQ__Password: "guest"
+  ports:
+   - "5001:8080"   
