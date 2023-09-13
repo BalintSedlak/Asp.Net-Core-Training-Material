@@ -1,3 +1,7 @@
+#Volumes are different on windows and linux
+#From browser use localhost
+#From a docker container use the another docker container's name
+
 version: '3.4'
 services:
  RabbitMQ:
@@ -24,7 +28,7 @@ services:
    RabbitMQ__Port: "5672"
    RabbitMQ__Username: "guest"
    RabbitMQ__Password: "guest"
-   CORS_ALLOWED_ORIGINS: http://frontend:3000
+   CORS_ALLOWED_ORIGINS: http://localhost:3000
   ports:
    - "5000:8080"   
  subscriberApp:
@@ -41,3 +45,16 @@ services:
    CORS_ALLOWED_ORIGINS: http://localhost:5672,http://rabbitmq:5672
   ports:
    - "5001:8080"   
+ frontend:
+  image: frontend-dev
+  container_name: frontend-dev
+  build:
+   context: .
+   target: development
+   dockerfile: ./docker/Frontend/Dockerfile
+  volumes:
+   - ./frontend/src:/app/src
+  ports:
+   - "3000:3000"
+  environment:
+   REACT_APP_PUBLISHER_URL: http://localhost:5000

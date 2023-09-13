@@ -94,7 +94,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Publisher", "6_Docker2\Publ
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{70EEC614-B994-4962-AE85-6DB416F250A2}"
 	ProjectSection(SolutionItems) = preProject
-		6_Docker2\docker-compose.yml = 6_Docker2\docker-compose.yml
+		6_Docker2\.dockerignore = 6_Docker2\.dockerignore
+		6_Docker2\docker-compose.dev.yml = 6_Docker2\docker-compose.dev.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Publisher", "Publisher", "{D3D9944F-97C5-4AAE-A5D3-C355471D4C6C}"
@@ -110,6 +111,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedKernel", "6_Docker2\SharedKernel\SharedKernel.csproj", "{9C924DA6-C1F3-4722-8ADB-0AC5B31FB071}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Subscriber", "6_Docker2\Subscriber\Subscriber.csproj", "{BB72506A-D3BF-46D5-92D1-084E72817135}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{DDF88407-5157-4105-96B0-C441681D57C3}"
+	ProjectSection(SolutionItems) = preProject
+		6_Docker2\Docker\Frontend\Dockerfile = 6_Docker2\Docker\Frontend\Dockerfile
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -258,6 +264,7 @@ Global
 		{E05C8286-4443-4E98-8ACA-EBD41148C9E9} = {70EEC614-B994-4962-AE85-6DB416F250A2}
 		{9C924DA6-C1F3-4722-8ADB-0AC5B31FB071} = {3D7EFBCD-9D56-47FE-A7FD-A2FDA9746A8F}
 		{BB72506A-D3BF-46D5-92D1-084E72817135} = {3D7EFBCD-9D56-47FE-A7FD-A2FDA9746A8F}
+		{DDF88407-5157-4105-96B0-C441681D57C3} = {70EEC614-B994-4962-AE85-6DB416F250A2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D11A4D0C-2091-4158-A63C-388C1A7783E6}
