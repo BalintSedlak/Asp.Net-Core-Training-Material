@@ -9,11 +9,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
 {
+    string[] allowedOrigins = builder.Configuration["CORS_ALLOWED_ORIGINS"].Split(',');
+
     options.AddPolicy("MySite", builder =>
     {
-        builder.WithOrigins("http://localhost:5672",
-                            "http://localhost:5194",
-                            "http://rabbitmq:5672")
+        builder.WithOrigins(allowedOrigins)
         .AllowCredentials()
         .AllowAnyMethod()
         .AllowAnyHeader();
@@ -35,7 +35,7 @@ builder.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<RabbitMqConfi
 
 builder.Services.AddSingleton<RabbitMqServiceFactory>();
 
-builder.Services.AddSingleton<OrderConsumer>();
+builder.Services.AddTransient<OrderConsumer>();
 builder.Services.AddSingleton<IRepository<OrderCreated>, Repository<OrderCreated>>();
 
 var app = builder.Build();

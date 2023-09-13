@@ -12,10 +12,12 @@ public class GetProductOrders : EndpointBaseAsync
     .WithResult<IReadOnlyCollection<GetProductOrdersResult>>
 {
     private readonly IRepository<OrderCreated> _repository;
+    private readonly OrderConsumer _orderConsumer;
 
     public GetProductOrders(IRepository<OrderCreated> repository, OrderConsumer orderConsumer)
     {
         _repository = repository;
+        _orderConsumer = orderConsumer;
     }
 
     [HttpGet("/Items/Orders")]
