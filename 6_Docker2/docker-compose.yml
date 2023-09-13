@@ -24,6 +24,7 @@ services:
    RabbitMQ__Port: "5672"
    RabbitMQ__Username: "guest"
    RabbitMQ__Password: "guest"
+   CORS_ALLOWED_ORIGINS: http://frontend:3000
   ports:
    - "5000:8080"   
  subscriberApp:

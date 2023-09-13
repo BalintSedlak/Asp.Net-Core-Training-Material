@@ -4,6 +4,19 @@ using SharedKernel.Messaging;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    string[] allowedOrigins = builder.Configuration["CORS_ALLOWED_ORIGINS"].Split(',');
+
+    options.AddPolicy("MySite", builder =>
+    {
+        builder.WithOrigins(allowedOrigins)
+        .AllowCredentials()
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+    });
+});
+
 builder.Services.AddControllers(options => options.UseNamespaceRouteToken());
 builder.Services.AddSwaggerGen();
 builder.Services.AddSwaggerGen(c =>
@@ -31,6 +44,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
+app.UseCors("MySite");
 app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
