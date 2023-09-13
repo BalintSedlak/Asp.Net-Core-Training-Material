@@ -13,7 +13,7 @@ builder.Services.AddCors(options =>
     {
         builder.WithOrigins("http://localhost:5672",
                             "http://localhost:5194",
-                            "http://172.19.112.1:3000")
+                            "http://rabbitmq:5672")
         .AllowCredentials()
         .AllowAnyMethod()
         .AllowAnyHeader();
