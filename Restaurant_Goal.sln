@@ -7,8 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1_Alternatives", "1_Alterna
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2_ProductiveMinimalApi", "2_ProductiveMinimalApi", "{08E2A8FB-F4A5-472B-84E2-916725F2A499}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3_Mediatr", "3_Mediatr", "{F580B237-6DDF-4627-9C01-8EADBF848F41}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Core", "2_ProductiveMinimalApi\Restaurant.Core\Restaurant.Core.csproj", "{F23D2FF8-0CB6-4C5E-8B58-45B6F78030DE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Infrasturcture", "2_ProductiveMinimalApi\Restaurant.Infrasturcture\Restaurant.Infrasturcture.csproj", "{3A6B34EC-FD52-40A6-99E8-49364664C953}"
@@ -20,14 +18,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.WebApp_BasicMinimalApi", "1_Alternatives\Restaurant.WebApp_BasicMinimalApi\Restaurant.WebApp_BasicMinimalApi.csproj", "{B2EBA5B7-9B8E-4BBE-8D81-2D53703AE196}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.WebApp_Controller", "1_Alternatives\Restaurant.WebApp_Controller\Restaurant.WebApp_Controller.csproj", "{189C7888-058E-4A28-8465-DBEE492C222D}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.MediatR.Core", "3_MediatR\Restaurant.MediatR.Core\Restaurant.MediatR.Core.csproj", "{19480D48-D731-4AAA-AEC7-13F43BD0D443}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.MediatR.Infrasturcture", "3_MediatR\Restaurant.MediatR.Infrasturcture\Restaurant.MediatR.Infrasturcture.csproj", "{255100B9-28DD-4EB7-ACFA-CD590FF0643E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.MediatR.WebApp", "3_MediatR\Restaurant.MediatR.WebApp\Restaurant.MediatR.WebApp.csproj", "{3B276522-F917-4ABF-8FBE-B52882EEEE98}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.MediatR.WebApp.Test", "3_MediatR\Restaurant.MediatR.WebApp.Test\Restaurant.MediatR.WebApp.Test.csproj", "{3CCBE0A1-1A58-45B1-87B3-998FD270702C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0_Postman", "0_Postman", "{C8C31EBE-9A11-4A2C-A568-B2358AEF6D9F}"
 	ProjectSection(SolutionItems) = preProject
@@ -96,6 +86,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{70EEC6
 	ProjectSection(SolutionItems) = preProject
 		6_Docker2\.dockerignore = 6_Docker2\.dockerignore
 		6_Docker2\docker-compose.dev.yml = 6_Docker2\docker-compose.dev.yml
+		6_Docker2\docker-compose.prod.yml = 6_Docker2\docker-compose.prod.yml
+		6_Docker2\docker-compose.pull.yml = 6_Docker2\docker-compose.pull.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Publisher", "Publisher", "{D3D9944F-97C5-4AAE-A5D3-C355471D4C6C}"
@@ -147,22 +139,6 @@ Global
 		{189C7888-058E-4A28-8465-DBEE492C222D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{189C7888-058E-4A28-8465-DBEE492C222D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{189C7888-058E-4A28-8465-DBEE492C222D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{19480D48-D731-4AAA-AEC7-13F43BD0D443}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{19480D48-D731-4AAA-AEC7-13F43BD0D443}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{19480D48-D731-4AAA-AEC7-13F43BD0D443}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{19480D48-D731-4AAA-AEC7-13F43BD0D443}.Release|Any CPU.Build.0 = Release|Any CPU
-		{255100B9-28DD-4EB7-ACFA-CD590FF0643E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{255100B9-28DD-4EB7-ACFA-CD590FF0643E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{255100B9-28DD-4EB7-ACFA-CD590FF0643E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{255100B9-28DD-4EB7-ACFA-CD590FF0643E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3B276522-F917-4ABF-8FBE-B52882EEEE98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3B276522-F917-4ABF-8FBE-B52882EEEE98}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3B276522-F917-4ABF-8FBE-B52882EEEE98}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3B276522-F917-4ABF-8FBE-B52882EEEE98}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3CCBE0A1-1A58-45B1-87B3-998FD270702C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3CCBE0A1-1A58-45B1-87B3-998FD270702C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3CCBE0A1-1A58-45B1-87B3-998FD270702C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3CCBE0A1-1A58-45B1-87B3-998FD270702C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0C186B6F-B893-4212-ADFD-25DBD90B27BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0C186B6F-B893-4212-ADFD-25DBD90B27BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C186B6F-B893-4212-ADFD-25DBD90B27BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -234,10 +210,6 @@ Global
 		{1DFC90F4-2843-483A-8FB8-8366E7C3F6C9} = {08E2A8FB-F4A5-472B-84E2-916725F2A499}
 		{B2EBA5B7-9B8E-4BBE-8D81-2D53703AE196} = {F42612AE-1423-4B4B-913C-313DB883BB7F}
 		{189C7888-058E-4A28-8465-DBEE492C222D} = {F42612AE-1423-4B4B-913C-313DB883BB7F}
-		{19480D48-D731-4AAA-AEC7-13F43BD0D443} = {F580B237-6DDF-4627-9C01-8EADBF848F41}
-		{255100B9-28DD-4EB7-ACFA-CD590FF0643E} = {F580B237-6DDF-4627-9C01-8EADBF848F41}
-		{3B276522-F917-4ABF-8FBE-B52882EEEE98} = {F580B237-6DDF-4627-9C01-8EADBF848F41}
-		{3CCBE0A1-1A58-45B1-87B3-998FD270702C} = {F580B237-6DDF-4627-9C01-8EADBF848F41}
 		{F8E1DC96-B2B6-46CD-B579-3E7303F37119} = {D0CC111D-1D0E-4F52-8FE9-4E5AD85207F4}
 		{0C186B6F-B893-4212-ADFD-25DBD90B27BC} = {F8E1DC96-B2B6-46CD-B579-3E7303F37119}
 		{3943B2E2-8D2C-4B15-8E31-B090AB658341} = {F8E1DC96-B2B6-46CD-B579-3E7303F37119}
