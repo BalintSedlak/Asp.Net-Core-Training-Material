@@ -17,8 +17,5 @@ Copy --from=build-env /app ./
 ENV ASPNETCORE_URLS=http://+:8080
 EXPOSE 8080
 
-ENV ASPNETCORE_ENVIRONMENT=Development
-ENV DOTNET_CLI_TELEMETRY_OPTOUT=true
-
 # Set the entry point for the application
 ENTRYPOINT ["dotnet", "Subscriber.dll"]

@@ -21,7 +21,7 @@ builder.Services.AddControllers(options => options.UseNamespaceRouteToken());
 builder.Services.AddSwaggerGen();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Pub/Sub", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Publisher", Version = "v1" });
     c.EnableAnnotations();
     c.UseApiEndpoints();
 });
@@ -38,9 +38,10 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
-    app.UseSwagger();
-    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Pub/Sub V1"));
 }
+
+app.UseSwagger();
+app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Publisher V1"));
 
 app.UseHttpsRedirection();
 app.UseRouting();

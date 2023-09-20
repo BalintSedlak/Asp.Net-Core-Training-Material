@@ -18,8 +18,8 @@ services:
    RABBITMQ_DEFAULT_USER: guest
    RABBITMQ_DEFAULT_PASS: guest
  publisherApp:
-  image: publisher
-  container_name: publisher
+  image: balintsedlakoneidentity/dockerdemo_publisher
+  container_name: publisher-pull
   build:
    context: .
    dockerfile: ./docker/Publisher/Dockerfile
@@ -32,8 +32,8 @@ services:
   ports:
    - "5000:8080"   
  subscriberApp:
-  image: subscriber
-  container_name: subscriber
+  image: balintsedlakoneidentity/dockerdemo_subscriber
+  container_name: subscriber-pull
   build:
    context: .
    dockerfile: ./docker/Subscriber/Dockerfile
@@ -46,8 +46,8 @@ services:
   ports:
    - "5001:8080"   
  frontend:
-  image: frontend-prod
-  container_name: frontend-prod
+  image: balintsedlakoneidentity/dockerdemo_frontend
+  container_name: frontend-pull
   build:
    context: .
    target: production
