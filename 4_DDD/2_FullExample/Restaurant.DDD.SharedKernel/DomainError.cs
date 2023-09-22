@@ -16,7 +16,7 @@ public class DomainError : IEquatable<DomainError>
 
     public static implicit operator string(DomainError domainError) => domainError.ErrorCode;
 
-    //TODO
+    //TODO?
     public bool Equals(DomainError? other)
     {
         throw new NotImplementedException();

@@ -2,7 +2,7 @@
 
 namespace Restaurant.DDD.SharedKernel.Guards;
 
-public static partial class GuardClauseExtensions
+public static class GuardStringExtensions
 {
     public static Result<string, DomainError> NullOrEmpty(this IGuardClause guardClause, string input, DomainError domainError)
     {

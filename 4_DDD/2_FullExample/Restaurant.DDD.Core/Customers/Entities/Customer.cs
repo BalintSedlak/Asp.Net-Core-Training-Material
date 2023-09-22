@@ -1,47 +1,44 @@
-﻿using Restaurant.DDD.Core.Orders.Entities;
+﻿using Restaurant.DDD.Core.Customers.ValueObjects;
 using Restaurant.DDD.Core.Products.ValueObjects;
 using Restaurant.DDD.SharedKernel;
 using Restaurant.DDD.SharedKernel.Monads;
 using Restaurant.DDD.SharedKernel.ValueObjects;
-using System.Reflection.Metadata.Ecma335;
-using static Restaurant.DDD.Core.Errors.DomainErrors;
 
 namespace Restaurant.DDD.Core.Customers.Entities;
 
 public sealed class Customer : AggregateRoot<CustomerId>
 {
     public CustomerId CustomerId { get; private set; }
-    public string CompanyName { get; private set; }
-    public string ContactName { get; private set; }
-    public string Phone { get; private set; }
+    public CompanyContacts CompanyContacts { get; private set; }
+    public Address Address { get; private set; }
     public IReadOnlyCollection<OrderId> Orders => _orders.AsReadOnly();
     
     private readonly List<OrderId> _orders;
 
-    private Customer(Address address, CustomerId customerId, ProductId productId) : base(customerId)
+    private Customer(CustomerId customerId, CompanyContacts companyContacts, Address address) : base(customerId)
     {
         CustomerId = customerId;
+        CompanyContacts = companyContacts;
+        Address = address;
 
-        _orders = new List<OrderId>();
-
-        
+        _orders = new List<OrderId>();        
     }
 
     public static async Task<Result<Customer, DomainError>> Create()
     {
-        //var result = Address.Create("Street", "City", "State", "Country", "ZipCode")
+        //return Address.Create("Street", "City", "State", "Country", "ZipCode")
         //                    .Bind(address => CustomerId.Create(Guid.NewGuid())
         //                    .Bind(customerId => ProductId.Create(new Guid())
         //                    .Bind(productId => Result<Customer, DomainError>
         //                    .Success(new Customer(address, customerId, productId)))));
 
-        var result = Address.Create("Street", "City", "State", "Country", "ZipCode")
-                            .Bind(address => CustomerId.Create(Guid.NewGuid())
-                            .Bind(customerId => ProductId.Create(Guid.NewGuid())
-                            .Bind(productId => Result<Customer, DomainError>
-                            .Success(new Customer(address, customerId, productId)))));
-
-        return result;
+        return Address.Create("Street", "City", "State", "Country", "ZipCode").Bind(address => 
+               CustomerId.Create(Guid.NewGuid()).Bind(customerId =>
+               EmailAddress.Create("email@address.com").Bind(emailAddress =>
+               PhoneNumber.Create("+36204567890").Bind(phoneNumber =>
+               CompanyContacts.Create("CompanyName", emailAddress, phoneNumber).Bind(companyContacts => 
+               Result<Customer, DomainError>.Success(
+                   new Customer(customerId, companyContacts, address)))))));
     }
 
     public void AddOrder(OrderId orderId)
