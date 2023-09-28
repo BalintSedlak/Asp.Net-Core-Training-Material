@@ -15,7 +15,7 @@ namespace Monad.Monads;
 //Maybe<number> = a number or nothing
 //Maybe<User> = a User or nothing
 
-//Aka Option
+//Aka Option, Nullable
 
 // !!! When null is not allowed, any API contract gets more explicit: either you return type T and it’s always going to be filled, or you return Maybe<T>.
 //The client will see that Maybe type is used, so it will be forced to handle the case of absent value.
