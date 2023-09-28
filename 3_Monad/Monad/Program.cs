@@ -1,5 +1,11 @@
 ﻿using Monad.ExampleClasses.Phase1;
 using Monad.ExampleClasses.Phase2;
+using Monad.ExampleClasses.Phase3;
+using Monad.ExampleClasses.Phase3.Imperative;
+using Monad.ExampleClasses.Phase3.Monad;
+using Monad.Monads;
+using System.Reflection;
+using System.Threading.Channels;
 
 //Monads are a design pattern that allows a user to chain operations while the monad manages secret work behind the scenes
 
@@ -21,7 +27,7 @@ static int AddOneV1(int x)
     return x + 1;
 }
 
-Console.WriteLine("Phase1:");
+Console.WriteLine("P1V1:");
 Console.WriteLine(AddOneV1(SquareV1(2))); 
 Console.WriteLine(SquareV1(AddOneV1(2))); 
 Console.WriteLine(SquareV1(SquareV1(2))); 
@@ -52,7 +58,7 @@ static NumberWithLogs AddOneV2(NumberWithLogs x)
     );
 }
 
-Console.WriteLine("Phase2:");
+Console.WriteLine("P1V2:");
 Console.WriteLine(AddOneV2(SquareV2(2)).Result); //Option1
 Console.WriteLine(AddOneV2(SquareV2(2)).WriteLog()); //Option2
 //Console.WriteLine(SquareV2(AddOneV2(2)));
@@ -80,7 +86,7 @@ static NumberWithLogs WrapWithLogsV3(int number)
     );
 }
 
-Console.WriteLine("Phase3:");
+Console.WriteLine("P1V3:");
 Console.WriteLine(AddOneV2(SquareV3(WrapWithLogsV3(2))));
 Console.WriteLine(SquareV3(AddOneV2(WrapWithLogsV3(2))));
 Console.WriteLine(SquareV3(SquareV3(WrapWithLogsV3(2))));
@@ -100,7 +106,7 @@ static NumberWithLogs RunWithLogs(NumberWithLogs input, Func<int, NumberWithLogs
     );
 }
 
-Console.WriteLine("Phase4:");
+Console.WriteLine("P1V4:");
 Console.WriteLine(RunWithLogs(WrapWithLogsV3(2), SquareV2));
 Console.WriteLine();
 
@@ -110,14 +116,68 @@ ImperativeBook dune = ImperativeBook.Create("Dune", ImperativePerson.Create("Fra
 ImperativeBook iliad = ImperativeBook.Create("Iliad", ImperativePerson.Create("Homer"));
 ImperativeBook gilgamesh = ImperativeBook.Create("The Epic of Gilgamesh");
 
+Console.WriteLine("P2_ImperativeBook:");
 Console.WriteLine(dune.GetLabel());
 Console.WriteLine(iliad.GetLabel());
 Console.WriteLine(gilgamesh.GetLabel());
+Console.WriteLine();
 
 MonadBook foundation = MonadBook.Create("Foundation", MonadPerson.Create("Isaac", "Asimov"));
 MonadBook odyssey = MonadBook.Create("Odyssey", MonadPerson.Create("Homer"));
 MonadBook oneThousandAndOneNights = MonadBook.Create("One Thousand and One Nights");
 
+Console.WriteLine("P2_MonadBook:");
 Console.WriteLine(foundation.GetLabel());
 Console.WriteLine(odyssey.GetLabel());
 Console.WriteLine(oneThousandAndOneNights.GetLabel());
+Console.WriteLine();
+
+//Phase 3: Design by Contract
+
+DateTimeProvider dateTimeProvider = new();
+ImperativeMovieService imperativeMovieService = new(dateTimeProvider);
+
+Movie invalidId = new Movie { Id = 5, Title = "Interstellar", Year = 2014, Category = "Adventure, Drama, Sci-Fi" };
+Movie invalidYear = new Movie { Id = 0, Title = "Interstellar", Year = 2035, Category = "Adventure, Drama, Sci-Fi" };
+Movie validMovie = new Movie { Id = 2, Title = "Star Wars: Episode IV - A New Hope", Year = 1977, Category = "Action, Adventure, Fantasy" };
+
+Console.WriteLine("P3_ImperativeMovieService:");
+Console.WriteLine(imperativeMovieService.Update(validMovie)); 
+Console.WriteLine(imperativeMovieService.Update(invalidId)); 
+//Console.WriteLine(imperativeMovieService.Update(invalidYear)); 
+Console.WriteLine();
+
+MonadMovieService monadMovieService = new MonadMovieService(dateTimeProvider);
+
+Console.WriteLine("P3_MonadMovieService:");
+Console.WriteLine(monadMovieService.Update(validMovie));
+Console.WriteLine(monadMovieService.Update(invalidId));
+Console.WriteLine(monadMovieService.Update(invalidYear));
+Console.WriteLine();
+
+var result = monadMovieService.Update(validMovie);
+
+if (result)
+{
+    Console.WriteLine("Success: " + result);
+}
+else
+{
+    Console.WriteLine("Failure: " + result);
+}
+
+var result2 = result.Match(
+                onSuccess => "Success: " + onSuccess,
+                onFailure => "Failure: " + onFailure
+              );
+
+Console.WriteLine(result2);
+
+Movie validMovie2 = new Movie { Id = 2, Title = "The Terminator", Year = 1984, Category = "Action, Sci-Fi" };
+
+var result3 = monadMovieService.GetById(2).Bind(GetMovie =>
+              monadMovieService.Update(validMovie2).Bind(UpdatedMovie =>
+              Result<Movie, DomainError>.Success(UpdatedMovie)
+));
+
+Console.WriteLine(result3);

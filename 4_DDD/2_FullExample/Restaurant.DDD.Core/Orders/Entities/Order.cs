@@ -17,8 +17,8 @@ public sealed class Order : AggregateRoot<OrderId>
     public static async Task<OneOf<Order, DomainError>> Create()
     {
         var order = OrderId.Create(Guid.NewGuid()).Bind(orderId =>
-        Result<Order, DomainError>.Success(
-        new Order(orderId, new List<string> { "product1", "product2", "product3" })));
+                    Result<Order, DomainError>.Success(
+                    new Order(orderId, new List<string> { "product1", "product2", "product3" })));
 
         return order.Match<OneOf<Order, DomainError>>(
             onSuccess => onSuccess,
